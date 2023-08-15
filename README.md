@@ -2,7 +2,7 @@
 
 ## Objetivo Geral
 
-Este projeto tem como objetivo criar um sistema bancário com as operações: sacar, depositar e visualizar extrato.
+Este projeto tem como objetivo criar um sistema bancário, utilizando a linguagem Python, com as operações: sacar, depositar e visualizar extrato.
 
 ## Desafio
 
