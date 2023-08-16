@@ -16,51 +16,63 @@ print()
 
 while True:
     print("-" * 54)
-    print("[1] Depositar", "[2] Sacar", "[3] Extrato", "[4] Sair", sep = "    ")
+    print("[1] Depositar", "[2] Sacar", "[3] Extrato", "[4] Sair", sep="    ")
     print("-" * 54)
     
     opcao = int(input("\nDigite o número correspondente a opção desejada: "))
 
-    if opcao == 1: # DEPOSITAR
-        print()
-        print(".\n" * 4)
+    # Depositar
+    if opcao == 1:
+        print(".\n" * 2)
         valor += float(input("Digite o valor a ser depositado: R$ "))
-        saldo += valor
-        valor_depositado += valor
-        valor = 0.00
-        print("Depósito realizado com sucesso!")
-        print()
-        print(".\n" * 4)
-    elif opcao == 2: # SACAR
+        if valor > 0:
+            saldo += valor
+            valor_depositado += valor
+            valor = 0.00
+            print("Depósito realizado com sucesso!")
+            print(".\n" * 2)
+        else:
+            print("O valor é inválido!")
+            print(".\n" * 2)
+    # SACAR
+    elif opcao == 2:
         print()
         print(".\n" * 4)
         if qtd_saque < QTD_SAQUES:
             valor = float(input("Digite o valor a ser sacado: R$ "))
-            if saldo >= valor:
-                if valor <= LIMITE_SAQUE:
-                    saldo -= valor
-                    valor_sacado += valor
-                    valor = 0.00
-                    qtd_saque += 1
-                    print("Saque autorizado com sucesso. Aguarde a impressão das notas.")
-                    print()
-                    print(".\n" * 4)
+            if valor > 0:
+                if saldo >= valor:
+                    if valor <= LIMITE_SAQUE:
+                        saldo -= valor
+                        valor_sacado += valor
+                        valor = 0.00
+                        qtd_saque += 1
+                        print("Saque autorizado com sucesso. Aguarde a impressão das notas.")
+                        print()
+                        print(".\n" * 4)
+                    else:
+                        print("\nOperação não autorizada!\nO limite máximo é de R$ 500,00 por saque.")
+                        print()
+                        print(".\n" * 4)
+                        continue
                 else:
-                    print("\nOperação não autorizada!\nO limite máximo é de R$ 500,00 por saque.")
+                    print("\nOperação não autorizada!")
+                    print("\nSaldo em conta insuficiente para realizar a operação de saque no valor desejado.")
                     print()
                     print(".\n" * 4)
                     continue
             else:
-                print("\nOperação não autorizada!\nSaldo em conta insuficiente para realizar a operação de saque no valor desejado.")
+                print("\nOperação não autorizada!")
+                print("\nO valor desejado é inválido.")
                 print()
                 print(".\n" * 4)
-                continue
         else:
             print("\nOperação não autorizada!\nO limite máximo de saque diário foi atingido.")
             print()
             print(".\n" * 4)
             continue
-    elif opcao == 3: # EXTRATO
+    # EXTRATO
+    elif opcao == 3:
         if valor_depositado == 0.00 and valor_sacado == 0.00:
             print()
             print(".\n" * 4)
@@ -79,7 +91,8 @@ while True:
             print(f'Saldo atual ......... R$ {saldo:.2f}')
             print()
             print(".\n" * 4)
-    elif opcao == 4: # SAIR
+    # SAIR
+    elif opcao == 4:
         print()
         print(".\n" * 4)
         print("\nEncerrando sessão...")
